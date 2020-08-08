@@ -18,9 +18,21 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
-    if (term) {
+
+    if (term && !results.length) {
       search();
+    } else {
+      const timeOutId = setTimeout(() => {
+        if (term) {
+          search();
+        }
+      }, 750);
+
+      return () => {
+        clearTimeout(timeOutId);
+      };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [term]);
 
   const renderedResult = results.map((res) => {
