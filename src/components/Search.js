@@ -26,14 +26,14 @@ const Search = () => {
         if (term) {
           search();
         }
-      }, 250);
+      }, 1000);
 
       return () => {
         clearTimeout(timeOutId);
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [term]);
+  }, [term, results.length]);
 
   const renderedResult = results.map((res) => {
     return (
